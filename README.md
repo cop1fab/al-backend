@@ -57,6 +57,12 @@ Open `a/nice/path/to/a.file` then edit it with your settings. You will need:
 - Another setting;
 - One more setting;
 
+## Creating Models & running Migrations
+
+- First create your models 
+- Then create your migration file with this command `sequelize migration:generate --name (name of the migrations)`
+- Then run `npm run migrate`
+
 ## Running the project
 
     $ npm run dev
