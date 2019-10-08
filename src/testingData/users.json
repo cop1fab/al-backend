@@ -16,5 +16,16 @@
    "signup4":{
        "email":"hubert@gmail.com",
        "password":"test@123"
+   },
+   "login1": {
+    "email": "grammer@db.com",
+    "password": "test@123"
+   },
+   "login2": {
+    "email": "paccy10@db.com",
+    "password": "test@123"
+   },
+   "login3": {
+    "email": "grammer@db.com"
    }
 }
