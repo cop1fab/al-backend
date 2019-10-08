@@ -7,7 +7,7 @@
     "start": " node_modules/.bin/sequelize  db:migrate && node --require babel-register  index.js",
     "dev": "NODE_ENV=development nodemon --require babel-register index.js",
     "migrate": "node_modules/.bin/sequelize db:migrate",
-    "test": "NODE_ENV=test nyc --reporter=html --reporter=text --timeout=1500 mocha   --require babel-register src/test/* --exit"
+    "test": "NODE_ENV=test nyc --reporter=html --reporter=text --timeout=1500 mocha   --require babel-register tests/* --exit"
   },
   "repository": {
     "type": "git",
