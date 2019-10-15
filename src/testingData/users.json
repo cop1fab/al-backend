@@ -1,0 +1,20 @@
+{
+    "signup1":{
+       "username":"hubert",
+       "email":"hubert@artlane.com",
+       "password":"test@123"
+   },
+   "signup2":{
+       "username":"Remmy",
+       "password":"test@123"
+   },
+   "signup3":{
+       "username":"copain",
+       "email":"copain@gmail.com",
+       "password":"test@123"
+   },
+   "signup4":{
+       "email":"hubert@gmail.com",
+       "password":"test@123"
+   }
+}
