@@ -2,6 +2,8 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import dotenv from 'dotenv';
 import models from '../models/index';
+import sendEmail from '../helpers/Email/callMailer';
+
 
 dotenv.config();
 const User = models.user;
@@ -20,23 +22,28 @@ class UserController {
    * @param {Object} res -responding from user
    * @returns {Object} Response with status of 201
    */
-  signup(req, res) {
+  static async signup(req, res) {
     const newUser = {
       username: req.body.username,
       email: req.body.email,
       password: bcrypt.hashSync(req.body.password, 10)
     };
-    User.create(newUser)
-      .then((user) => {
-        const payload = {
-          id: user.id,
-          name: user.username
-        };
-        // @creating jwt token
-        const token = jwt.sign(payload, process.env.secretOrKey, { expiresIn: '1day' });
-        return res.status(201).json({ status: 201, token: `Bearer ${token}`, user });
-      })
-      .catch(error => res.status(500).json({ error }));
+    try {
+      const { dataValues: user } = await User.create(newUser);
+      const payload = { id: user.id, username: user.username, email: user.email };
+      const token = jwt.sign(payload, process.env.secretOrKey, { expiresIn: '1day' });
+      const response = await sendEmail(user.email, token);
+      return res.status(201).json({
+        email: user.email,
+        token,
+        username: user.username,
+        bio: user.bio,
+        image: user.image,
+        emailResponse: response
+      });
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
   }
 
   /**
